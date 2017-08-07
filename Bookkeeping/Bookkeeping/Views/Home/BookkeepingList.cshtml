@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Bookkeeping.Models.ViewModels.BookkeepingMemoListViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 1;
+}
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemsCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Types)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTimes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Money)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> 
+                @(count++) 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Types)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Money)
+            </td>
+        </tr>
+    }
+
+</table>
