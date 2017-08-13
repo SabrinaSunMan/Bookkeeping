@@ -34,5 +34,6 @@ namespace Bookkeeping.Models.ViewModels
 
         [DisplayName("金額")]
         public int Money { get; set; }
+         
     }
 }

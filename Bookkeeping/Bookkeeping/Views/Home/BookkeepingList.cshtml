@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Bookkeeping.Models.ViewModels.BookkeepingMemoListViewModel>
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "";
     int count = 1;
 }
 <table class="table table-bordered table-hover">
@@ -21,7 +21,7 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr> 
             <td> 
                 @(count++) 
             </td>

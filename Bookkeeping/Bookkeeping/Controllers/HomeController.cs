@@ -28,12 +28,12 @@ namespace Bookkeeping.Controllers
 
         public ActionResult Bookkeeping()
         {
-            return View(new BookkeepingHeaderViewModel());
-        }
+            return View();
+        } 
 
         [ChildActionOnly] //避免這個Action被外部連入
         public ActionResult BookkeepingList()
-        {
+        { 
             List<BookkeepingMemoListViewModel> bookkeepingList = new List<BookkeepingMemoListViewModel>();
             for (int countDays = 0; countDays < 5; countDays++)
             {
@@ -41,7 +41,7 @@ namespace Bookkeeping.Controllers
                 {
                     Types = "支出",
                     DateTimes = DateTime.Now.AddDays(-countDays),
-                    Money = 10 * Convert.ToInt16(DateTime.Now.Day) * (countDays+1)
+                    Money = 10 * Convert.ToInt32(DateTime.Now.Day) * (countDays + 1)
                 });
             }
             return View(bookkeepingList);
