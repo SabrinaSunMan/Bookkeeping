@@ -1,12 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+using PagedList;
 
 namespace Bookkeeping.Models.ViewModels
 {
+    /// <summary>
+    /// 包括 表頭以及 PageList
+    /// </summary>
+    public class BookkeepingInfoViewModel
+    {
+        public BookkeepingHeaderViewModel Header { get; set; }
+
+        public IPagedList<BookkeepingMemoListViewModel> Content_List { get; set; }
+
+        public int page { get; set; }
+    }
+
+    /// <summary>
+    /// 表頭
+    /// </summary>
     public class BookkeepingHeaderViewModel
     {
         [DisplayName("金額")]
@@ -20,6 +33,9 @@ namespace Bookkeeping.Models.ViewModels
         public string Notes { get; set; }
     }
 
+    /// <summary>
+    /// 表內容
+    /// </summary>
     public class BookkeepingMemoListViewModel
     {
         [DisplayName("#")]
