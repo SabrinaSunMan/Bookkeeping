@@ -48,12 +48,6 @@ namespace Bookkeeping.Repositories
             _SkillEntities.Entry(entity).State = EntityState.Modified;
             _SkillEntities.SaveChanges();
         }
-
-        public IPagedList<T> ReturnPageList(IEnumerable<T> toList, int currentPage, int PageSize)
-        {
-            IEnumerable<T> GetPageList = toList;
-            currentPage = GetPageList.Count() < PageSize ? 1 : currentPage;
-            return GetPageList.ToPagedList(currentPage, PageSize);
-        }
+         
     }
 }

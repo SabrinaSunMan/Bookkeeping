@@ -10,7 +10,7 @@
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().ItemsCount)
         </th>
-        <th>
+        <th> 
             @Html.DisplayNameFor(model => model.FirstOrDefault().Types)
         </th>
         <th>
@@ -28,7 +28,7 @@
                 @(count++)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Types)
+                @BookInfoRazorHelper.ControllColor(@item.Types)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateTimes)

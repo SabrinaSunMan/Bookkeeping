@@ -1,0 +1,13 @@
+﻿@using Bookkeeping.Enum
+
+@helper ControllColor(string types)
+{
+    if(types == BookType.支出.ToString())
+    {
+        <p style="color:RED">@types</p>
+    }
+    else
+    {
+        <p style="color:blue">@types</p>
+    }
+}

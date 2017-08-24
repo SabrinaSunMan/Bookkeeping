@@ -46,7 +46,7 @@ namespace Bookkeeping.Repositories
         /// <param name="toList"></param>
         /// <param name="pages"></param>
         /// <returns></returns>
-        IPagedList<T> ReturnPageList(IEnumerable<T> toList, int currentPage, int PageSize);
+        //IPagedList<T> ReturnPageList(IEnumerable<T> toList, int currentPage, int PageSize);
         
     }
 }

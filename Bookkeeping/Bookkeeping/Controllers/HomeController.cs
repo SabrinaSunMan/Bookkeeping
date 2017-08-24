@@ -43,23 +43,37 @@ namespace Bookkeeping.Controllers
         public ActionResult Bookkeeping(int page = 1)
         {
             BookkeepingInfoViewModel infoModel = new BookkeepingInfoViewModel(); 
-            int currentPage = page < 1 ? 1 : page;
-
-            infoModel.Content_List = _BookInfoService.GetMemoList_ViewModel(new BookkeepingHeaderViewModel(), currentPage, pageSize);
+            int currentPage = page < 1 ? 1 : page; 
+            infoModel.Content_List = _BookInfoService.GetAllBook_ViewModel(new BookkeepingHeaderViewModel()).ToPagedList(currentPage, pageSize);
             return View(infoModel);
         }
 
         [HttpPost]
         public ActionResult Bookkeeping(BookkeepingInfoViewModel post_BookkeepingInfoViewModel)
         {
-            int currentPage = post_BookkeepingInfoViewModel.page < 1 ? 1 : post_BookkeepingInfoViewModel.page;
-            BookkeepingInfoViewModel infoModel = new BookkeepingInfoViewModel();
-            infoModel.Header = post_BookkeepingInfoViewModel.Header;
-             
-            infoModel.Content_List = _BookInfoService.GetMemoList_ViewModel(infoModel.Header,currentPage, pageSize);
-            return View(infoModel);
+            
+             if (ModelState.IsValid)
+            {
+                BookInfo book = new BookInfo
+                {
+                    Id = Guid.NewGuid(),
+                    DateTimes = post_BookkeepingInfoViewModel.Header.DateTimes,
+                    Money = post_BookkeepingInfoViewModel.Header.Money,
+                    Notes = post_BookkeepingInfoViewModel.Header.Notes,
+                    Types = post_BookkeepingInfoViewModel.Header.Types
+                };
+                
+                _BookInfoService.Create(book); 
+            }
+            return RedirectToAction("Bookkeeping"); 
         }
-          
+
+        //public ActionResult CreateData()
+        //{
+
+        //}
+
+
         //[ChildActionOnly] //避免這個Action被外部連入
         //public ActionResult BookkeepingList()
         //{
