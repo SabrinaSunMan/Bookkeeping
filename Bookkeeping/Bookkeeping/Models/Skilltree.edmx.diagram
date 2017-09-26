@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="01fa8a44609b47a0bd0be833ac133589" Name="Diagram1">
-        <EntityTypeShape EntityType="SkillTreeHomeworkModel.AccountBook" PointX="0.75" PointY="3.75" Width="1.5" />
+        <EntityTypeShape EntityType="SkillTreeHomeworkModel.AccountBook" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="SkillTreeHomeworkModel.BookInfo" Width="1.5" PointX="2.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
