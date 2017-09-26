@@ -28,7 +28,7 @@
                 @(count++)
             </td>
             <td>
-                @BookInfoRazorHelper.ControllColor(@item.Types)
+                @Html.DisplayFor(modelItem => item.Types)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateTimes)

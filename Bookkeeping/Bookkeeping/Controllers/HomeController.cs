@@ -5,14 +5,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-
+using PagedList;
 
 namespace Bookkeeping.Controllers
 {
-    
     public class HomeController : Controller
     {
-          
+        private BookInfoService _BookInfoService;
+
+        private readonly int pageSize = 5;
+
+        public HomeController()
+        {
+            _BookInfoService = new BookInfoService();
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -31,8 +38,28 @@ namespace Bookkeeping.Controllers
 
             return View();
         } 
-          
 
+        [HttpGet]
+        public ActionResult Bookkeeping(int page = 1)
+        {
+            BookkeepingInfoViewModel infoModel = new BookkeepingInfoViewModel(); 
+            int currentPage = page < 1 ? 1 : page;
+
+            infoModel.Content_List = _BookInfoService.GetMemoList_ViewModel(new BookkeepingHeaderViewModel(), currentPage, pageSize);
+            return View(infoModel);
+        }
+
+        [HttpPost]
+        public ActionResult Bookkeeping(BookkeepingInfoViewModel post_BookkeepingInfoViewModel)
+        {
+            int currentPage = post_BookkeepingInfoViewModel.page < 1 ? 1 : post_BookkeepingInfoViewModel.page;
+            BookkeepingInfoViewModel infoModel = new BookkeepingInfoViewModel();
+            infoModel.Header = post_BookkeepingInfoViewModel.Header;
+             
+            infoModel.Content_List = _BookInfoService.GetMemoList_ViewModel(infoModel.Header,currentPage, pageSize);
+            return View(infoModel);
+        }
+          
         //[ChildActionOnly] //避免這個Action被外部連入
         //public ActionResult BookkeepingList()
         //{
