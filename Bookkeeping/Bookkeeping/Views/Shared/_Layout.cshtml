@@ -9,10 +9,9 @@
     @Scripts.Render("~/bundles/modernizr")*@
     <link href="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/PagedList.css" rel="stylesheet" />
-    <link href="~/Content/jquery-ui.structure.css" rel="stylesheet" />
-    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-1.10.2.js"></script>
-    <script src="~/Scripts/jquery-ui.js"></script>
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+    @*<link href="~/Content/jquery-ui.structure.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />*@
 
 </head>
 <body>
@@ -35,18 +34,21 @@
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody() 
+        @RenderBody()
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - <a href="#">SkillTree</a></p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
     
-    @*<script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+    @*↑不要再使用 @Scripts.Render 了!*@
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
+    @RenderSection("scripts", required: false) @*RenderSection應該要放在最下面*@
 </body>
 </html>

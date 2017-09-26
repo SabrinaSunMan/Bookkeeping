@@ -21,7 +21,7 @@ namespace Bookkeeping.Service
                 {
                     DateTimes = List.DateTimes,
                     Money = List.Money,
-                    Types = List.Types == 1 ? BookType.支出.ToString() : BookType.收入.ToString()
+                    Types = List.Types == 0 ? BookType.支出.ToString() : BookType.收入.ToString()
                 }).ToList();
            
             return result;

@@ -41,11 +41,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Categoryyy" Type="Int32" Nullable="false" />
-          <Property Name="Amounttt" Type="Int32" Nullable="false" />
-          <Property Name="Dateee" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Remarkkk" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Nullable="false" Type="Guid" />
+          <Property Name="Categoryyy" Nullable="false" Type="Int32" />
+          <Property Name="Amounttt" Nullable="false" Type="Int32" />
+          <Property Name="Dateee" Nullable="false" Precision="3" Type="DateTime" />
+          <Property Name="Remarkkk" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" Type="String" />
         </EntityType>
         <EntityType Name="BookInfo">
           <Key>
