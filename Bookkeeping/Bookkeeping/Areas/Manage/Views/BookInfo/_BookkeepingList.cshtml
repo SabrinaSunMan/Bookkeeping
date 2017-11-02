@@ -1,0 +1,42 @@
+﻿@model PagedList.IPagedList<Bookkeeping.Areas.Manage.Models.ViewModels.BookkeepingMemoListViewModel>
+
+@{
+    Layout = "";
+    int count = 1;
+}
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ItemsCount)
+        </th>
+        <th> 
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Types)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().DateTimes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Money)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(count++)
+            </td>
+            <td>
+                @BookInfoRazorHelper.ControllColor(@item.Types)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Money)
+            </td>
+        </tr>
+    }
+
+</table>

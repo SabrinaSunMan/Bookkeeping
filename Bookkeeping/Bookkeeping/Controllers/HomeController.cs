@@ -1,28 +1,31 @@
-﻿using Bookkeeping.Models;
-using Bookkeeping.Models.ViewModels;
-using Bookkeeping.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
+﻿using Bookkeeping.Areas.Manage.Models.ViewModels;
+using Bookkeeping.Areas.Manage.Service;
 using PagedList;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Bookkeeping.Controllers
 {
     public class HomeController : Controller
-    {
-        private BookInfoService _BookInfoService;
-
-        private readonly int pageSize = 5;
-
-        public HomeController()
+    { 
+        public class TEST
         {
-            _BookInfoService = new BookInfoService();
+            public string Name { get; set; }
+            public SelectList test { get; set; }
         }
 
         public ActionResult Index()
         {
-            return View();
+            TEST t = new TEST();
+            t.test = new SelectList(
+                new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Homeowner", Value = "value1"},
+                    new SelectListItem { Text = "Contractor", Value = "value2"}
+                }, "Value", "Text"
+            ); 
+
+            return View(t);
         }
 
         public ActionResult About()
@@ -32,61 +35,25 @@ namespace Bookkeeping.Controllers
             return View();
         }
 
+        [Authorize(Users = "test@test.test,test123@test.test")]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
-        } 
+        }
+        private BookInfoService _BookInfoService = new BookInfoService();
+
+        private readonly int pageSize = 5;
 
         [HttpGet]
         public ActionResult Bookkeeping(int page = 1)
         {
-            BookkeepingInfoViewModel infoModel = new BookkeepingInfoViewModel(); 
-            int currentPage = page < 1 ? 1 : page; 
+            BookkeepingInfoViewModel infoModel = new BookkeepingInfoViewModel();
+            int currentPage = page < 1 ? 1 : page;
             infoModel.Content_List = _BookInfoService.GetAllBook_ViewModel(new BookkeepingHeaderViewModel()).ToPagedList(currentPage, pageSize);
             return View(infoModel);
         }
 
-        [HttpPost]
-        public ActionResult Bookkeeping(BookkeepingInfoViewModel post_BookkeepingInfoViewModel)
-        {
-            
-             if (ModelState.IsValid)
-            {
-                BookInfo book = new BookInfo
-                {
-                    Id = Guid.NewGuid(),
-                    DateTimes = post_BookkeepingInfoViewModel.Header.DateTimes,
-                    Money = post_BookkeepingInfoViewModel.Header.Money,
-                    Notes = post_BookkeepingInfoViewModel.Header.Notes,
-                    Types = post_BookkeepingInfoViewModel.Header.Types
-                };
-                
-                _BookInfoService.Create(book); 
-            }
-            return RedirectToAction("Bookkeeping"); 
-        }
-
-        //public ActionResult CreateData()
-        //{
-
-        //}
-
-
-        //[ChildActionOnly] //避免這個Action被外部連入
-        //public ActionResult BookkeepingList()
-        //{
-        //    //List<BookkeepingMemoListViewModel> bookkeepingList = new List<BookkeepingMemoListViewModel>();
-        //    //for (int countDays = 0; countDays < 5; countDays++)
-        //    //{
-        //    //    bookkeepingList.Add(new BookkeepingMemoListViewModel()
-        //    //    {
-        //    //        Types = "支出",
-        //    //        DateTimes = DateTime.Now.AddDays(-countDays),
-        //    //        Money = 10 * Convert.ToInt32(DateTime.Now.Day) * (countDays + 1)
-        //    //    });
-        //    //} 
-        //}
     }
 }

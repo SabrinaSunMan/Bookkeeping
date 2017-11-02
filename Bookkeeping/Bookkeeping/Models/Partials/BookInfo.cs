@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
-namespace Bookkeeping.Models
+namespace Bookkeeping.Models.Partials
 {
     /// <summary>
     /// 記帳本
